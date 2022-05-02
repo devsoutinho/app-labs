@@ -1,0 +1,27 @@
+{
+    "name": "devsoutinho_app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+      "test:unit": "flutter test",
+      "dev:web": "flutter run -d chrome --web-renderer html",
+      "dev:web:canvas": "flutter run -d chrome --web-renderer canvaskit",
+      "build:web": "flutter build web --web-renderer html",
+      "build:web:canvas": "flutter build web --web-renderer canvaskit",
+      "build:web:dev": "yarn build:web && http-server -c-1 -p 8080  ./build/web/",
+      "build:web:dev:canvas": "yarn build:web:canvas && http-server -c-1 -p 8080 ./build/web/",
+      "deploy:web": "yarn deploy:web:base --prod",
+      "deploy:web:preview": "node ./scripts/pullRequestPreview.js",
+      "deploy:web:base": "yarn build:web && npx vercel ./build/web --confirm --no-clipboard --token=$VERCEL_TOKEN"
+    },
+    "devDependencies": {
+      "dotenv": "^16.0.0",
+      "shelljs": "^0.8.5",
+      "vercel": "^24.1.0"
+    },
+    "dependencies": {
+      "node-fetch": "^3.2.3"
+    }
+  }
