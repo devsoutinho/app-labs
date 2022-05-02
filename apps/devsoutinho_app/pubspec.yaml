@@ -27,6 +27,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  devsoutinho_ui: 
+    path: '../../packages/devsoutinho_ui'
+  commons: 
+    path: '../../packages/commons'
   flutter:
     sdk: flutter
 
