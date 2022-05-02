@@ -13,7 +13,7 @@ class Text extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isPlatform(CurrentPlatform.WEB)) {
+    if (isPlatform(CurrentPlatform.web)) {
       return flutter.SelectableText(
         data,
       );

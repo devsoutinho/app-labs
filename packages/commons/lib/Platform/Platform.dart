@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
 
 enum CurrentPlatform {
-  ANDROID,
-  IOS,
-  WEB,
-  MACOS,
-  LINUX,
-  WINDOWS,
-  FUCHSIA,
-  NONE,
+  android,
+  ios,
+  web,
+  macOS,
+  linux,
+  windows,
+  fuchsia,
+  none,
 }
 
 bool isPlatform(CurrentPlatform platform) {
