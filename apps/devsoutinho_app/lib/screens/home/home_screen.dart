@@ -22,17 +22,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title, styleSheet: TextStyleSheet()),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
             Text(
-              '$_counter',
+              'Components: Text',
+              styleSheet: TextStyleSheet(selectable: true),
+            ),
+            const Button(
+              'Components: Button',
             ),
           ],
         ),
