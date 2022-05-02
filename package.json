@@ -1,0 +1,25 @@
+{
+    "name": "devsoutinho-app-labs",
+    "version": "0.0.0",
+    "private": true,
+    "workspaces": {
+      "packages": [
+        "apps/*"
+      ]
+    },
+    "scripts": {
+      "devsoutinho_app": "yarn workspace devsoutinho_app",
+      "dev:web": "yarn devsoutinho_app dev:web",
+      "build:web": "yarn devsoutinho_app build:web",
+      "build:web:dev": "yarn devsoutinho_app build:web:dev",
+      "deploy:web": "yarn devsoutinho_app deploy:web",
+      "test:unit": "yarn devsoutinho_app test:unit",
+      "deploy:web:preview": "yarn devsoutinho_app deploy:web:preview"
+    },
+    "main": "index.js",
+    "author": "Mario Souto <13791385+omariosouto@users.noreply.github.com>",
+    "license": "MIT",
+    "devDependencies": {
+      "http-server": "^14.1.0"
+    }
+  }
