@@ -1,4 +1,5 @@
 import 'package:devsoutinho_ui/devsoutinho_ui.dart';
+import 'package:web_navigation/web_navigation.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -22,14 +23,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var router = UseRouter(context);
+
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(widget.title, styleSheet: TextStyleSheet()),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Button(
+              'App: Magic Counter',
+              onPressed: () => {router.push('/apps/magic_counter/')},
+            ),
+            Text(
+              '==========================================',
+              styleSheet: TextStyleSheet(selectable: true),
+            ),
+            // Components
             Text(
               'Components: Text $_counter',
               styleSheet: TextStyleSheet(selectable: true),

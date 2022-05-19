@@ -3,11 +3,12 @@ import 'package:flutter/material.dart' as flutter;
 
 class Button extends StatelessWidget {
   final String data;
-  // StyleSheet with Selectable
+  final void Function()? onPressed;
 
   const Button(
     this.data, {
     Key? key,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -17,6 +18,8 @@ class Button extends StatelessWidget {
       onPressed: () {
         // ignore: avoid_print
         print('Button pressed');
+
+        if (onPressed != null) onPressed!();
       },
       child: Text(data, styleSheet: TextStyleSheet(selectable: false)),
     );

@@ -10,7 +10,7 @@ class TextStyleSheet {
 
 class Text extends StatelessWidget {
   final String data;
-  final TextStyleSheet styleSheet;
+  final TextStyleSheet? styleSheet;
   // StyleSheet with Selectable
 
   const Text(
@@ -33,12 +33,12 @@ class Text extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isPlatform(CurrentPlatform.web)) {
-      if (styleSheet.selectable == false) {
+      if (styleSheet?.selectable == false) {
         return renderText(false);
       }
       return renderText(true);
     }
 
-    return renderText(styleSheet.selectable);
+    return renderText(styleSheet?.selectable == true);
   }
 }

@@ -18,6 +18,13 @@
             "flutterMode": "profile"
         },
         {
+            "name": "devsoutinho_app (debug mode)",
+            "cwd": "apps/devsoutinho_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
+        {
             "name": "devsoutinho_app (release mode)",
             "cwd": "apps/devsoutinho_app",
             "request": "launch",

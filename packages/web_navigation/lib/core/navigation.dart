@@ -35,6 +35,14 @@ class WebNavigationRouter {
 
   WebNavigationRouter(this.context);
 
+  void addRoutes(Map<String, Widget> routes) {
+    routes.forEach((routeName, routeWidget) {
+      addRoute(
+          routeName: routeName,
+          routeBuilder: (BuildContext context) => routeWidget);
+    });
+  }
+
   addRoute({
     required String routeName,
     required WidgetBuilder routeBuilder,
