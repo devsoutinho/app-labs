@@ -11,6 +11,8 @@
       "devsoutinho_app": "yarn workspace devsoutinho_app",
       "dev:web": "yarn devsoutinho_app dev:web",
       "dev:mac": "yarn devsoutinho_app dev:mac",
+      "dev:win": "yarn devsoutinho_app dev:win",
+      "dev:linux": "yarn devsoutinho_app dev:linux",
       "build:web": "yarn devsoutinho_app build:web",
       "build:web:dev": "yarn devsoutinho_app build:web:dev",
       "deploy:web": "yarn devsoutinho_app deploy:web",
