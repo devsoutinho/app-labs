@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
 
