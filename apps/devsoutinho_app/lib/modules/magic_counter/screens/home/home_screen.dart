@@ -13,12 +13,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
+  int _firstPlayer = 20;
+  int _secondPlayer = 20;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _decrement(int player) {
+    if (player == 1) {
+      setState(() {
+        _firstPlayer--;
+      });
+    } else {
+      setState(() {
+        _secondPlayer--;
+      });
+    }
   }
 
   @override
@@ -35,28 +42,19 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Button(
-              'App: Magic Counter',
-              onPressed: () => {router.push('/apps/magic_counter/')},
+              'Player 01: $_firstPlayer',
+              onPressed: () => _decrement(1),
             ),
-            Text(
-              '==========================================',
-              styleSheet: TextStyleSheet(selectable: true),
+            Button(
+              'Player 02: $_secondPlayer',
+              onPressed: () => _decrement(2),
             ),
-            // Components
-            Text(
-              'Components: Text $_counter',
-              styleSheet: TextStyleSheet(selectable: true),
-            ),
-            const Button(
-              'Components: Button',
+            Button(
+              'Back to Home Screen',
+              onPressed: () => router.push('/'),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }

@@ -1,0 +1,95 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "devsoutinho_app",
+            "cwd": "apps/devsoutinho_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "devsoutinho_app (profile mode)",
+            "cwd": "apps/devsoutinho_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "devsoutinho_app (debug mode)",
+            "cwd": "apps/devsoutinho_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
+        {
+            "name": "devsoutinho_app (release mode)",
+            "cwd": "apps/devsoutinho_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "commons",
+            "cwd": "packages/commons",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "commons (profile mode)",
+            "cwd": "packages/commons",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "commons (release mode)",
+            "cwd": "packages/commons",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "devsoutinho_ui",
+            "cwd": "packages/devsoutinho_ui",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "devsoutinho_ui (profile mode)",
+            "cwd": "packages/devsoutinho_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "devsoutinho_ui (release mode)",
+            "cwd": "packages/devsoutinho_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "web_navigation",
+            "cwd": "packages/web_navigation",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "web_navigation (profile mode)",
+            "cwd": "packages/web_navigation",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "web_navigation (release mode)",
+            "cwd": "packages/web_navigation",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
