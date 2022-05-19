@@ -26,7 +26,7 @@ jobs:
         java-version: '11'
     - uses: subosito/flutter-action@v1
       with:
-        flutter-version: '2.10.5'
+        flutter-version: '3.0.0'
     - name: "Start: Deploy Web"
       run: |
         yarn install

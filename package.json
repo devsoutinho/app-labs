@@ -18,8 +18,5 @@
     },
     "main": "index.js",
     "author": "Mario Souto <13791385+omariosouto@users.noreply.github.com>",
-    "license": "MIT",
-    "devDependencies": {
-      "http-server": "^14.1.0"
-    }
+    "license": "MIT"
   }
