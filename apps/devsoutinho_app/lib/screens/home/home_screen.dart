@@ -38,6 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
               'App: Magic Counter',
               onPressed: () => {router.push('/apps/magic_counter/')},
             ),
+            Button(
+              'Not Found Page',
+              onPressed: () => {router.push('/apps/any-not-found-page/')},
+            ),
             Text(
               '==========================================',
               styleSheet: TextStyleSheet(selectable: true),
