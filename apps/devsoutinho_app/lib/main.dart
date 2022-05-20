@@ -26,9 +26,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WebNavigationRouter router = WebNavigationRouter(context);
-    // Routes =============================
     router.addRoutes(routes);
-    // ====================================
+
     return MaterialApp(
       title: 'DevSoutinho',
       theme: ThemeData(

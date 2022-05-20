@@ -15,8 +15,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Player> players = const [
-    Player(name: "Mario", score: 20, background: Colors.red),
-    Player(name: "Amanda", score: 20, background: Colors.white),
+    Player(name: "Mario", score: 20, background: "#FF0000"),
+    Player(name: "Amanda", score: 20, background: "#0000FF"),
   ];
 
   @override
@@ -24,10 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
     var router = UseRouter(context);
 
     return Scaffold(
-      body: Stack(
+      body: Box(
+        styleSheet: const StyleSheet(position: {Breakpoints.xs: "relative"}),
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          Box(
+            styleSheet: const StyleSheet(
+              flexDirection: {Breakpoints.xs: "row"},
+              crossAxisAlignment: {Breakpoints.xs: "stretch"},
+            ),
             children: players
                 .map((player) => PlayerArea(
                       playerName: player.name,
@@ -36,14 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ))
                 .toList(),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Button(
-              "Back to home",
-              onPressed: () => router.push('/'),
+          Box(
+            styleSheet: const StyleSheet(
+              position: {Breakpoints.xs: "absolute"},
+              left: {Breakpoints.xs: "0"},
+              right: {Breakpoints.xs: "0"},
+              bottom: {Breakpoints.xs: "0"},
             ),
+            children: [
+              Button(
+                "Back to home",
+                onPressed: () => router.push('/'),
+              )
+            ],
           )
         ],
       ),
@@ -54,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class PlayerArea extends StatelessWidget {
   final String playerName;
   final int score;
-  final Color background;
+  final String background;
 
   const PlayerArea({
     Key? key,
@@ -65,17 +74,23 @@ class PlayerArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        color: background,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Box(
+      styleSheet: const StyleSheet(flex: {Breakpoints.xs: 1}),
+      children: [
+        Box(
+          styleSheet: StyleSheet(
+            flexDirection: {Breakpoints.xs: "column"},
+            mainAxisAlignment: {Breakpoints.xs: "center"},
+            crossAxisAlignment: {Breakpoints.xs: "center"},
+            color: {Breakpoints.xs: "#FFFFFF"},
+            backgroundColor: {Breakpoints.xs: background},
+          ),
           children: [
             Text(playerName),
             Text('$score'),
           ],
-        ),
-      ),
+        )
+      ],
     );
   }
 }
