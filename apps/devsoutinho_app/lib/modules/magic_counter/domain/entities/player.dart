@@ -2,12 +2,12 @@ import './colors.dart';
 
 class Player {
   final String name;
-  final int score;
+  int score;
   final String background;
 
-  const Player({
+  Player({
     required this.name,
-    required this.score,
+    this.score = 20,
     required this.background,
   });
 }

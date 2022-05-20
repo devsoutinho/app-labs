@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:devsoutinho_app/modules/magic_counter/domain/entities/colors.dart';
 
 import '../../domain/entities/player.dart';
@@ -16,10 +18,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Player> players = [
-    Player(name: "Mario", score: 20, background: DeckColors.red),
-    Player(name: "Amanda", score: 20, background: DeckColors.blue),
-  ];
+  List<Player> players = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+      const Duration(seconds: 2),
+      () => setState(() => {
+            players = [
+              Player(name: "Mario", score: 40, background: DeckColors.red),
+              Player(name: "Amanda", score: 40, background: DeckColors.blue),
+            ]
+          }),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +44,35 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Box(
             styleSheet: const StyleSheet(
-              flexDirection: {Breakpoints.xs: "row"},
+              flexDirection: {
+                Breakpoints.xs: "column",
+                Breakpoints.md: "row",
+              },
               crossAxisAlignment: {Breakpoints.xs: "stretch"},
             ),
-            children: players
-                .map((player) => PlayerArea(
-                      playerName: player.name,
-                      score: player.score,
-                      background: player.background.toString(),
-                    ))
-                .toList(),
+            children: (players.isEmpty)
+                ? [
+                    const Box(
+                      styleSheet: StyleSheet(
+                        flex: {Breakpoints.xs: 1},
+                        flexDirection: {Breakpoints.xs: "column"},
+                        mainAxisAlignment: {Breakpoints.xs: "center"},
+                        crossAxisAlignment: {Breakpoints.xs: "center"},
+                      ),
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
+                    )
+                  ]
+                : players
+                    .map((player) => PlayerArea(
+                          playerName: player.name,
+                          score: player.score,
+                          background: player.background.toString(),
+                          onDecrement: () => setState(() => player.score--),
+                          onIncrement: () => setState(() => player.score++),
+                        ))
+                    .toList(),
           ),
           Box(
             styleSheet: const StyleSheet(
@@ -66,12 +98,16 @@ class PlayerArea extends StatelessWidget {
   final String playerName;
   final int score;
   final String background;
+  final Function? onDecrement;
+  final Function? onIncrement;
 
   const PlayerArea({
     Key? key,
     required this.playerName,
     required this.score,
     required this.background,
+    this.onIncrement,
+    this.onDecrement,
   }) : super(key: key);
 
   @override
@@ -90,6 +126,22 @@ class PlayerArea extends StatelessWidget {
           children: [
             Text(playerName),
             Text('$score'),
+            Box(
+              styleSheet: const StyleSheet(
+                marginTop: {Breakpoints.xs: "10px"},
+                flexDirection: {Breakpoints.xs: "row"},
+              ),
+              children: [
+                Button(
+                  '+',
+                  onPressed: () => (onIncrement != null) && onIncrement!(),
+                ),
+                Button(
+                  '-',
+                  onPressed: () => (onDecrement != null) && onDecrement!(),
+                ),
+              ],
+            ),
           ],
         )
       ],
