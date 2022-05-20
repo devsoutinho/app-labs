@@ -15,6 +15,11 @@
 ### Web
 - ...
 
+#### Issues
+- History API doesn't work as expected.
+    - Bugs on loading
+    - Bugs when going back and moving forward
+
 ### Android/iOS
 - ...
 ### Desktop

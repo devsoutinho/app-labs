@@ -16,7 +16,7 @@ class Text extends StatelessWidget {
   const Text(
     this.data, {
     Key? key,
-    required this.styleSheet,
+    this.styleSheet,
   }) : super(key: key);
 
   Widget renderText(bool selectable) {
