@@ -21,13 +21,13 @@ class NotFoundCustom extends StatelessWidget {
         children: [
           Box(
             styleSheet: const StyleSheet(
-              flex: {Breakpoints.xs: 1},
-              mainAxisAlignment: {Breakpoints.xs: "center"},
-              crossAxisAlignment: {Breakpoints.xs: "center"},
-              flexDirection: {Breakpoints.xs: "column"},
-              backgroundColor: {Breakpoints.xs: "#AAAAAA"},
-              color: {Breakpoints.xs: "#FFFFFF"},
-            ),
+                flex: {Breakpoints.xs: 1},
+                mainAxisAlignment: {Breakpoints.xs: "center"},
+                crossAxisAlignment: {Breakpoints.xs: "center"},
+                flexDirection: {Breakpoints.xs: "column"},
+                backgroundColor: {Breakpoints.xs: "#AAAAAA"},
+                color: {Breakpoints.xs: "#FFFFFF"},
+                borderRadius: {Breakpoints.xs: "10px"}),
             children: [
               Text(
                 '404 Not found Screen Custom!',
