@@ -1,3 +1,5 @@
+import 'package:devsoutinho_app/modules/magic_counter/domain/entities/colors.dart';
+
 import '../../domain/entities/player.dart';
 import 'package:devsoutinho_ui/devsoutinho_ui.dart';
 import 'package:web_navigation/web_navigation.dart';
@@ -14,9 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Player> players = const [
-    Player(name: "Mario", score: 20, background: "#FF0000"),
-    Player(name: "Amanda", score: 20, background: "#0000FF"),
+  final List<Player> players = [
+    Player(name: "Mario", score: 20, background: DeckColors.red),
+    Player(name: "Amanda", score: 20, background: DeckColors.blue),
   ];
 
   @override
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 .map((player) => PlayerArea(
                       playerName: player.name,
                       score: player.score,
-                      background: player.background,
+                      background: player.background.toString(),
                     ))
                 .toList(),
           ),

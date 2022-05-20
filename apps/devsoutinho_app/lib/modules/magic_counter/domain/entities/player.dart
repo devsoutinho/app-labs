@@ -1,3 +1,5 @@
+import './colors.dart';
+
 class Player {
   final String name;
   final int score;
