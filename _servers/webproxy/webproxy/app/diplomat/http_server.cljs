@@ -21,8 +21,8 @@
      :route-name :version]
     ["/api/users"
      :get (conj #_(doc/desc "Current Version")
-           get-users)]
-     :route-name :get-users})
+           get-users)
+     :route-name :get-users]})
 
 (def routes
   (expand-routes
