@@ -4,6 +4,7 @@
             ["@tinyhttp/logger" :as logger]))
 
 (def port js/process.env.PORT)
+(prn (str "Setup port is: " port))
 
 (def ^:private app (app/App.))
 
