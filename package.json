@@ -5,7 +5,7 @@
     "workspaces": {
       "packages": [
         "_servers/*",
-        "apps/*"
+        "_apps/*"
       ]
     },
     "scripts": {

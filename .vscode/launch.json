@@ -6,27 +6,27 @@
     "configurations": [
         {
             "name": "devsoutinho_app",
-            "cwd": "apps/devsoutinho_app",
+            "cwd": "_apps/devsoutinho_app",
             "request": "launch",
             "type": "dart"
         },
         {
             "name": "devsoutinho_app (profile mode)",
-            "cwd": "apps/devsoutinho_app",
+            "cwd": "_apps/devsoutinho_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "devsoutinho_app (debug mode)",
-            "cwd": "apps/devsoutinho_app",
+            "cwd": "_apps/devsoutinho_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug"
         },
         {
             "name": "devsoutinho_app (release mode)",
-            "cwd": "apps/devsoutinho_app",
+            "cwd": "_apps/devsoutinho_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
