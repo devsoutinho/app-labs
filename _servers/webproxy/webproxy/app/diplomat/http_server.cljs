@@ -2,12 +2,14 @@
   (:require [clojure.set :as set]
             [webproxy.app.config :as config]
             [webproxy.libs.common-pedestal.route :refer [expand-routes]]
-            #_ [webproxy.libs.common-io.doc :as doc]))
+            [webproxy.libs.common-io.doc :as doc]))
 
+(def common-interceptors
+  [])
 
 (defn current-version
   []
-  {:status 200 :body {:version (config/version)}})
+  {:status 201 :body {:version (config/version)}})
 
 (defn get-users
   []
@@ -16,12 +18,14 @@
 
 (def default-routes
   #{["/api/version"
-     :get (conj #_ (doc/desc "Current Version")
+     :get (conj common-interceptors
+                (doc/desc "Current Version")
                 current-version)
      :route-name :version]
     ["/api/users"
-     :get (conj #_(doc/desc "Current Version")
-           get-users)
+     :get (conj common-interceptors
+                (doc/desc "Current Version")
+                get-users)
      :route-name :get-users]})
 
 (def routes

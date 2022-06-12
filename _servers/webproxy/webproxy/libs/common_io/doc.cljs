@@ -1,6 +1,6 @@
 (ns webproxy.libs.common-io.doc)
 
-(defn doc
+(defn desc
   "Returns a interceptor that describes the current route"
   [description-string]
-  {:description description-string})
+  (fn [] {:description description-string}))

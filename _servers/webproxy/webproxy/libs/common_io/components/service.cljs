@@ -7,24 +7,38 @@
 
 (defn ^:private parse-route
   [route]
-  (let [path   "/"
-        method :get
+  (let [path   (get route 0)
+        method (get route 1)
+        route-middlewares (mapv (fn [middleware] (middleware)) (get route 2))
+        route-response (reduce conj route-middlewares)
         handler (fn [_req res]
-                  (.send res "Hello World!!!"))]
-    (prn "Route:")
-    (prn route)
+                  (prn route-response)
+                  (-> res
+                      (.set "X-Powered-By" "DevSoutinho")
+                      (.status (:status route-response))
+                      (.send (clj->js (:body route-response))))
+                  res)]
     {:path path
      :method method
      :handler handler}))
 
 (defn new-service
   [routes]
-  ; TODO: Give a way to extract stuff from here
   (let [routes-arr (into [] (map parse-route routes))]
-
     (-> app
         (.use (logger/logger))
         (.use (milliparsec/json))
+        ((fn [app] 
+           (let [methods {:get (aget app "get")
+                          :post (aget app "post")
+                          :delete (aget app "delete")
+                          :put (aget app "put")}]
+             (mapv (fn [route] (let [{:keys [path
+                                             method 
+                                             handler]} route]
+                                 ((method methods) path handler))) routes-arr)
+             app)))
+        #_#_#_
         (.post "/api/create" (fn [req res]
                                (js/console.log (aget req "body"))
                                (.send res (js/JSON.stringify (aget req "body")))))
