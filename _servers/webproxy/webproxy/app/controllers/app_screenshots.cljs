@@ -26,7 +26,7 @@
                                                     :height (:height size)
                                                     :deviceScaleFactor (:deviceScaleFactor size)})
                           _ (.waitForTimeout page (* 10 1000))
-                          _ (-> (.screenshot page #js {:path (str "../../_assets/" (:name route) "_" (:resolution size) "_" (:name size) "_app.png")})
+                          _ (-> (.screenshot page #js {:path (str "../../_assets/screens/" (:resolution size) "_" (:name size) "_" (:name route) "_app.png")})
                                 (.catch #(js/console.log %)))]
                     (.close browser))) routes)) sizes)
   {:status 200 :body {:message "I will take a screenshot for you!"}})
