@@ -21,7 +21,9 @@
       "build:web:dev": "yarn devsoutinho_app build:web:dev",
       "deploy:web": "yarn devsoutinho_app deploy:web",
       "test:unit": "yarn devsoutinho_app test:unit",
-      "deploy:web:preview": "yarn devsoutinho_app deploy:web:preview"
+      "deploy:web:preview": "yarn devsoutinho_app deploy:web:preview",
+      "generate:icons": "yarn devsoutinho_app generate:icons",
+      "generate:app_name": "yarn devsoutinho_app generate:app_name"
     },
     "main": "index.js",
     "author": "Mario Souto <13791385+omariosouto@users.noreply.github.com>",
