@@ -11,6 +11,7 @@
     "scripts": {
       "devsoutinho_webproxy": "yarn workspace @devsoutinho/webproxy",
       "start": "yarn devsoutinho_webproxy start",
+      "repl": "yarn devsoutinho_webproxy repl",
       "devsoutinho_app": "yarn workspace devsoutinho_app",
       "dev:web": "yarn devsoutinho_app dev:web",
       "dev:mac": "yarn devsoutinho_app dev:mac",
