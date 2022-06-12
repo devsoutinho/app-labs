@@ -3,7 +3,9 @@
             ["milliparsec" :as milliparsec]
             ["@tinyhttp/logger" :as logger]))
 
-(def port js/process.env.PORT)
+(def port (if js/process.env.PORT 
+            js/process.env.PORT
+            3000))
 (prn (str "Setup port is: " port))
 
 (def ^:private app (app/App.))

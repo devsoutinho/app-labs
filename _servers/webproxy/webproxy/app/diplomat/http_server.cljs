@@ -19,7 +19,13 @@
 ; =============================================
 
 (def default-routes
-  #{["/api/version"
+  #{["/"
+     :get (conj common-interceptors
+                (doc/desc "Current Version")
+                (fn []
+                  {:status 200 :body {:message "This is the entrypoint of my api :)"}}))
+     :route-name :version]
+    ["/api/version"
      :get (conj common-interceptors
                 (doc/desc "Current Version")
                 current-version)
