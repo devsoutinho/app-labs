@@ -9,9 +9,11 @@
         "start": "nbb webproxy/app/server.cljs",
         "test": "nbb -m webproxy.app_test.example-test/run-tests",
         "repl": "nbb nrepl-server :port 1337",
-        "deploy": "git push heroku main"
+        "deploy": "git push heroku main",
+        "lint": "clj-kondo --lint webproxy"
     },
     "dependencies": {
+        "puppeteer": "14.3.0",
         "@tinyhttp/app": "2.0.19",
         "@tinyhttp/logger": "1.3.0",
         "milliparsec": "2.2.2",

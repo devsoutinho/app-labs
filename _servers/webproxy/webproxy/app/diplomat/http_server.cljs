@@ -3,6 +3,7 @@
             [webproxy.app.config :as config]
             [webproxy.libs.common-pedestal.route :refer [expand-routes]]
             [webproxy.libs.common-io.doc :as doc]
+            [webproxy.app.controllers.app-screenshots :as controllers.app-screenshots]
             #_ [webproxy.libs.schema.core :as s]
             [schema.core :as s :include-macros true]))
 
@@ -36,11 +37,11 @@
                 (doc/desc "Current Version")
                 current-version)
      :route-name :version]
-    ["/api/users"
+    ["/api/app/screenshots"
      :get (conj common-interceptors
-                (doc/desc "Current Version")
-                get-users)
-     :route-name :get-users]})
+                (doc/desc "Takes screenshot of an app")
+                controllers.app-screenshots/get-screenshots)
+     :route-name :app_screenshot]})
 
 (def routes
   (expand-routes
