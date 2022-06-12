@@ -4,10 +4,10 @@
     "type": "module",
     "name": "@devsoutinho/webproxy",
     "scripts": {
-        "setup-clojure-deps": "rm -rf nbb-deps && bb write-deps",
         "predev": "npx kill-port 3000",
         "dev": "PORT=3000 nodemon --ext 'js,cljs' --exec 'yarn start'",
-        "start": "nbb ./webproxy/app/server.cljs",
+        "start": "nbb webproxy/app/server.cljs",
+        "test": "nbb -m webproxy.app_test.example-test/run-tests",
         "repl": "nbb nrepl-server :port 1337",
         "deploy": "git push heroku main"
     },
