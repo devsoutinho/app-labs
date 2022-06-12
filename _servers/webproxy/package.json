@@ -3,6 +3,7 @@
     "type": "module",
     "name": "@devsoutinho/webproxy",
     "scripts": {
+        "postinstall": "rm -rf nbb-deps && bb write-deps",
         "predev": "npx kill-port 3000",
         "dev": "PORT=3000 nodemon --ext 'js,cljs' --exec 'yarn start'",
         "start": "nbb src/webproxy/core.cljs"

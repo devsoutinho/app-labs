@@ -1,0 +1,7 @@
+{:tasks
+ {:requires ([babashka.fs :as fs])
+  write-deps {:doc "Write dependencies in deps folder"
+              :task (do (shell "bb --config nbb.edn uberjar nbb-deps.jar")
+                        (fs/create-dirs "nbb-deps")
+                        (fs/unzip "nbb-deps.jar" "nbb-deps")
+                        (shell "rm -rf nbb-deps.jar"))}}}
