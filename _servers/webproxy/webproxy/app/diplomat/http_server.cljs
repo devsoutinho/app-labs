@@ -4,15 +4,11 @@
             [webproxy.libs.common-pedestal.route :refer [expand-routes]]
             [webproxy.libs.common-io.doc :as doc]
             #_ [webproxy.libs.schema.core :as s]
-            [schema.core :as s]))
+            [schema.core :as s :include-macros true]))
 
-(s/set-fn-validation! false)
-;; (s/validate {:a s/Int} {:a "1"})
 
-(s/defn user
-  [name :- s/Str]
-  {:name name})
-(prn (user "Mario"))
+(s/set-fn-validation! true)
+(s/validate {:a s/Int} {:a 1})
 
 (defn current-version
   []
