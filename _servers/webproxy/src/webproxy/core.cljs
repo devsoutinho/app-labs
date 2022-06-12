@@ -1,8 +1,8 @@
-;; This script demonstrates use of tinyhttp with a logging middleware
 (ns webproxy.core
   (:require ["@tinyhttp/app" :as app]
             ["milliparsec" :as milliparsec]
-            ["@tinyhttp/logger" :as logger]))
+            ["@tinyhttp/logger" :as logger]
+            ["../js-interop/hello" :as hello]))
 
 (def app (app/App.))
 
@@ -13,7 +13,7 @@
                            (js/console.log (aget req "body"))
                 (.send res (js/JSON.stringify (aget req "body")))))
     (.get "/" (fn [_req res]
-                (.send res "<h1>Hello world</h1>")))
+                (.send res (hello/HelloWorld))))
     (.get "/page/:page/" (fn [req res]
                            (-> res
                                (.status 200)

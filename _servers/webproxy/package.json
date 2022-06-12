@@ -1,13 +1,19 @@
 {
     "license": "MIT",
+    "type": "module",
     "name": "@devsoutinho/webproxy",
     "scripts": {
-        "dev": "nbb src/webproxy/core.cljs"
+        "predev": "npx kill-port 3000",
+        "dev": "PORT=3000 nodemon --ext 'js,cljs' --exec 'yarn start'",
+        "start": "nbb src/webproxy/core.cljs"
     },
     "dependencies": {
         "@tinyhttp/app": "^2.0.19",
         "@tinyhttp/logger": "^1.3.0",
         "milliparsec": "^2.2.2",
         "nbb": "0.5.104"
+    },
+    "devDependencies": {
+        "nodemon": "2.0.16"
     }
 }
