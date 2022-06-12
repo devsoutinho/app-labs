@@ -1,14 +1,10 @@
-(ns webproxy.teste
+(ns webproxy.app.server
   (:require [deps]
             ["@tinyhttp/app" :as app]
             ["milliparsec" :as milliparsec]
-            ["@tinyhttp/logger" :as logger]
-            ["../js-interop/hello" :as hello]
-            [schema.core :as schemaao :include-macros false]))
+            ["@tinyhttp/logger" :as logger]))
 
-(s/validate s/Num 42)
 
-;; https://github.com/plumatic/schema
 (def app (app/App.))
 
 (-> app
@@ -18,7 +14,7 @@
                            (js/console.log (aget req "body"))
                            (.send res (js/JSON.stringify (aget req "body")))))
     (.get "/" (fn [_req res]
-                (.send res (hello/HelloWorld))))
+                (.send res "Hello World!!!")))
     (.get "/page/:page/" (fn [req res]
                            (-> res
                                (.status 200)
