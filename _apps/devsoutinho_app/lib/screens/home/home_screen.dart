@@ -33,7 +33,20 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Box(
+              styleSheet:
+                  const StyleSheet(marginBottom: {Breakpoints.xs: "10px"}),
+              children: [
+                Text(
+                  'Welcome to my first app',
+                  styleSheet: TextStyleSheet(
+                    selectable: true,
+                  ),
+                ),
+              ],
+            ),
             Button(
               'App: Magic Counter',
               onPressed: () => {router.push('/apps/magic_counter/')},
@@ -41,18 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Button(
               'Not Found Page',
               onPressed: () => {router.push('/apps/any-not-found-page/')},
-            ),
-            Text(
-              '==========================================',
-              styleSheet: TextStyleSheet(selectable: true),
-            ),
-            // Components
-            Text(
-              'Components: Text $_counter',
-              styleSheet: TextStyleSheet(selectable: true),
-            ),
-            const Button(
-              'Components: Button',
             ),
           ],
         ),
