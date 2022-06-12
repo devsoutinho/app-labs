@@ -23,6 +23,9 @@
   {:status 200 :body {:users [{:name "Mario Souto" :age 24}
                               {:name "Gamora" :age 3}]}})
 
+(def common-interceptors
+  [])
+
 ; =============================================
 
 (def default-routes
