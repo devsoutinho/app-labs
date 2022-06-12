@@ -2,10 +2,17 @@
   (:require [clojure.set :as set]
             [webproxy.app.config :as config]
             [webproxy.libs.common-pedestal.route :refer [expand-routes]]
-            [webproxy.libs.common-io.doc :as doc]))
+            [webproxy.libs.common-io.doc :as doc]
+            #_ [webproxy.libs.schema.core :as s]
+            [schema.core :as s]))
 
-(def common-interceptors
-  [])
+(s/set-fn-validation! false)
+(s/validate {:a s/Int} {:a "1"})
+
+;; (s/defn user
+;;   [name :- s/Str]
+;;   {:name name})
+
 
 (defn current-version
   []
