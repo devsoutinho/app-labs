@@ -7,12 +7,12 @@
             [schema.core :as s]))
 
 (s/set-fn-validation! false)
-(s/validate {:a s/Int} {:a "1"})
+;; (s/validate {:a s/Int} {:a "1"})
 
-;; (s/defn user
-;;   [name :- s/Str]
-;;   {:name name})
-
+(s/defn user
+  [name :- s/Str]
+  {:name name})
+(prn (user "Mario"))
 
 (defn current-version
   []
