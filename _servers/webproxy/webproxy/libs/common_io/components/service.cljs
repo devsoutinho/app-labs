@@ -3,6 +3,8 @@
             ["milliparsec" :as milliparsec]
             ["@tinyhttp/logger" :as logger]))
 
+(def port js/process.env.PORT)
+
 (def ^:private app (app/App.))
 
 (defn ^:private parse-route
@@ -53,4 +55,4 @@
                                                 (str "<pre>" (.-path req) "</pre>")
                                                 (str "<h2>Params</h2>")
                                                 (str "<pre>" (js/JSON.stringify (.-params req) nil 2) "</pre>")])))))
-        (.listen 3000 (fn [] (js/console.log "Listening on http://localhost:3000"))))))
+        (.listen port (fn [] (js/console.log (str "Listening on http://localhost:" port)))))))

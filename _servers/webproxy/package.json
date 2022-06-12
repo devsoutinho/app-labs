@@ -3,11 +3,12 @@
     "type": "module",
     "name": "@devsoutinho/webproxy",
     "scripts": {
-        "postinstall": "rm -rf nbb-deps && bb write-deps",
+        "setup-clojure-deps": "rm -rf nbb-deps && bb write-deps",
         "predev": "npx kill-port 3000",
         "dev": "PORT=3000 nodemon --ext 'js,cljs' --exec 'yarn start'",
         "start": "nbb ./webproxy/app/server.cljs",
-        "repl": "nbb nrepl-server :port 1337"
+        "repl": "nbb nrepl-server :port 1337",
+        "deploy": "git push heroku main"
     },
     "dependencies": {
         "@tinyhttp/app": "^2.0.19",

@@ -9,7 +9,7 @@
 
 (defn current-version
   []
-  {:status 201 :body {:version (config/version)}})
+  {:status 200 :body {:version (config/version)}})
 
 (defn get-users
   []
