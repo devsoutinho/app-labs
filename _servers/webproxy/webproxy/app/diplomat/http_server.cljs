@@ -29,7 +29,7 @@
      :get (conj common-interceptors
                 (doc/desc "Current Version")
                 (fn []
-                  {:status 200 :body {:message "This is the entrypoint of my api :)"}}))
+                  {:status 200 :body {:message "This is the entrypoint of my api minor change :)"}}))
      :route-name :version]
     ["/api/version"
      :get (conj common-interceptors
