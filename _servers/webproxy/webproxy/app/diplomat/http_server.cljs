@@ -16,6 +16,8 @@
   {:status 200 :body {:users [{:name "Mario Souto" :age 24}
                               {:name "Gamora" :age 3}]}})
 
+; =============================================
+
 (def default-routes
   #{["/api/version"
      :get (conj common-interceptors
