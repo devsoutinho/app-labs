@@ -1,4 +1,4 @@
-# App Labs
+# DevSoutinho Labs 🧪 
 
 - Here you can check my main app and all small apps inside it.
 
@@ -6,5 +6,5 @@
 
 | Project | Externa URL |
 | --- | --- |
-| DevSoutinho App | [Link](https://app.mariosouto.com/#/) |
-| DevSoutinho API | [Link](https://devsoutinho-webproxy.herokuapp.com/) |
+| App    | [Link](https://app.mariosouto.com/#/) |
+| Server | [Link](https://devsoutinho-webproxy.herokuapp.com/) |
