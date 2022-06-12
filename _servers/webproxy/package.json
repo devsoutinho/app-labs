@@ -1,0 +1,14 @@
+{
+    "name": "@devsoutinho/webproxy",
+    "scripts": {
+        "dev": "nbb example.cljs"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "nbb": "^0.5.104",
+        "csv-parse": "^5.0.4",
+        "shelljs": "^0.8.5",
+        "term-size": "^3.0.1",
+        "zx": "^5.3.0"
+    }
+}
