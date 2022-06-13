@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  url_launcher: ^6.1.3
   http: ^0.13.4
   web_navigation: 
     path: '../../packages/web_navigation'

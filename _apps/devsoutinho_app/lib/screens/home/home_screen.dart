@@ -1,37 +1,58 @@
 import 'dart:convert';
-import 'dart:math';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:devsoutinho_ui/devsoutinho_ui.dart';
 
-class Album {
-  final int userId;
-  final int id;
+class Post {
+  final String id;
+  final String url;
   final String title;
 
-  const Album({
-    required this.userId,
+  const Post({
     required this.id,
+    required this.url,
     required this.title,
   });
 
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      id: (json['url'] as String).replaceAll('https://youtu.be/', ''),
+      url: json['url'],
       title: json['title'],
     );
   }
 }
 
-Future<Album> fetchAlbum() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+Future<List<Post>> fetchPosts() async {
+  var body = {
+    "query": '''
+      query {
+        youtubeVideos(input: {
+          limit: 100,
+          offset: 1,
+        }) {
+          title
+          url
+        }
+      }
+    ''',
+    "variables": {},
+  };
+  final response = await http.post(
+    Uri.parse('https://api.mariosouto.com/api/graphql'),
+    body: jsonEncode(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  );
 
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
+    var posts = json
+        .decode(utf8.decode(response.bodyBytes))["data"]["youtubeVideos"]
+        .map<Post>((post) {
+      return Post.fromJson(post);
+    }).toList();
+    return posts;
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -53,25 +74,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map> myProducts = List.generate(
-      100,
-      (index) => {
-            "id": index + 1,
-            "name": "Video ${index + 1}",
-            "color": Colors.red[Random().nextInt(9) * 100]
-          }).toList();
+  List<Post> posts = [];
 
-  late Future<Album> futureAlbum;
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    fetchPosts().then((value) => setState(() => posts = [...posts, ...value]));
   }
 
   @override
   Widget build(BuildContext context) {
-    print(futureAlbum);
-
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -97,24 +109,44 @@ class _HomeScreenState extends State<HomeScreen> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: valueForBreakpoint({
                   Breakpoints.xs: 1,
-                  Breakpoints.md: 2,
+                  Breakpoints.md: 3,
                 }, context),
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
-                childAspectRatio: 2.0,
+                childAspectRatio: 4 / 3,
               ),
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return Card(
-                    // generate blues with random shades
                     color: Colors.white,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text(myProducts[index]["name"]),
+                    child: InkWell(
+                      onTap: () async {
+                        var url = posts[index].url;
+                        await launchUrl(
+                          Uri.parse(url),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: Image.network(
+                              "https://i.ytimg.com/vi/${posts[index].id}/maxresdefault.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            alignment: Alignment.center,
+                            child: Text(posts[index].title),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
-                childCount: myProducts.length,
+                childCount: posts.length,
               ),
             ),
           ),
