@@ -11,7 +11,7 @@ void main() {
 
 const routes = {
   // App: Main
-  HomeScreen.routeName: HomeScreen(title: 'Home Page | DevSoutinho'),
+  HomeScreen.routeName: HomeScreen(title: 'DevSoutinho Labs'),
   NotFoundCustom.routeName: NotFoundCustom(),
   // App: Magic Counter
   '/apps/magic_counter${module_magic_counter.HomeScreen.routeName}':

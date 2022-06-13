@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:devsoutinho_ui/devsoutinho_ui.dart';
-import 'package:web_navigation/web_navigation.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -13,55 +14,49 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final List<Map> myProducts = List.generate(
+      100, (index) => {"id": index + 1, "name": "Video ${index + 1}"}).toList();
 
   @override
   Widget build(BuildContext context) {
-    var router = UseRouter(context);
-
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(widget.title, styleSheet: TextStyleSheet()),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Box(
-              styleSheet:
-                  const StyleSheet(marginBottom: {Breakpoints.xs: "10px"}),
-              children: [
-                Text(
-                  'Welcome to my first app',
-                  styleSheet: TextStyleSheet(
-                    selectable: true,
-                  ),
-                ),
-              ],
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Text(widget.title),
             ),
-            Button(
-              'App: Magic Counter',
-              onPressed: () => {router.push('/apps/magic_counter/')},
+            elevation: 1,
+            pinned: true,
+            centerTitle: true,
+            expandedHeight: 400,
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 2.0,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Card(
+                    // generate blues with random shades
+                    color: Colors.red[Random().nextInt(9) * 100],
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(myProducts[index]["name"]),
+                    ),
+                  );
+                },
+                childCount: myProducts.length,
+              ),
             ),
-            Button(
-              'Not Found Page',
-              onPressed: () => {router.push('/apps/any-not-found-page/')},
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
