@@ -10,6 +10,7 @@
     },
     "scripts": {
       "devsoutinho_webproxy": "yarn workspace @devsoutinho/webproxy",
+      "dev:server": "yarn devsoutinho_webproxy dev",
       "start": "yarn devsoutinho_webproxy start",
       "repl": "yarn devsoutinho_webproxy repl",
       "devsoutinho_app": "yarn workspace devsoutinho_app",
