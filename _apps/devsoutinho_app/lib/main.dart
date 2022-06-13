@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DevSoutinho Labs',
       theme: ThemeData(
+        fontFamily: '--apple-system',
         primarySwatch: Colors.blueGrey,
       ),
       onGenerateRoute: router.onGenerateRoute,
