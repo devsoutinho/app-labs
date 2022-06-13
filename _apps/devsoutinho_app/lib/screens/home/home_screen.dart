@@ -75,6 +75,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Post> posts = [];
+  int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -82,87 +83,132 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchPosts().then((value) => setState(() => posts = [...posts, ...value]));
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var _widgetOptions = <Widget>[
+      HomeBody(posts: posts, widget: widget),
+      const Center(
+        child: Text(
+          'Settings and my apps',
+        ),
+      ),
+    ];
     return Scaffold(
-      body: CustomScrollView(
-        physics: posts.isEmpty ? const NeverScrollableScrollPhysics() : null,
-        slivers: <Widget>[
-          SliverAppBar(
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              title: Text(widget.title),
-            ),
-            elevation: 1,
-            pinned: true,
-            centerTitle: true,
-            expandedHeight: 400,
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
           ),
-          posts.isEmpty
-              ? const SliverFillRemaining(
-                  child: Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                )
-              : SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: valueForBreakpoint({
-                      Breakpoints.xs: 16,
-                      Breakpoints.lg: 100,
-                    }, context),
-                    vertical: 16,
-                  ),
-                  sliver: SliverGrid(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: valueForBreakpoint({
-                        Breakpoints.xs: 1,
-                        Breakpoints.md: 3,
-                      }, context),
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      childAspectRatio: 4 / 3,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        return Card(
-                          color: Colors.white,
-                          child: InkWell(
-                            onTap: () async {
-                              var url = posts[index].url;
-                              await launchUrl(
-                                Uri.parse(url),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                AspectRatio(
-                                  aspectRatio: 16 / 9,
-                                  child: Image.network(
-                                    "https://i.ytimg.com/vi/${posts[index].id}/maxresdefault.jpg",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(16),
-                                  alignment: Alignment.center,
-                                  child: Text(posts[index].title),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      childCount: posts.length,
-                    ),
-                  ),
-                ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Configurações",
+          ),
         ],
       ),
+      body: _widgetOptions.elementAt(_selectedIndex),
+    );
+  }
+}
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({
+    Key? key,
+    required this.posts,
+    required this.widget,
+  }) : super(key: key);
+
+  final List<Post> posts;
+  final HomeScreen widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      physics: posts.isEmpty ? const NeverScrollableScrollPhysics() : null,
+      slivers: <Widget>[
+        SliverAppBar(
+          flexibleSpace: FlexibleSpaceBar(
+            centerTitle: true,
+            title: Text(widget.title),
+          ),
+          elevation: 1,
+          pinned: true,
+          centerTitle: true,
+          expandedHeight: 400,
+        ),
+        posts.isEmpty
+            ? const SliverFillRemaining(
+                child: Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              )
+            : SliverPadding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: valueForBreakpoint({
+                    Breakpoints.xs: 16,
+                    Breakpoints.lg: 100,
+                  }, context),
+                  vertical: 16,
+                ),
+                sliver: SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: valueForBreakpoint({
+                      Breakpoints.xs: 1,
+                      Breakpoints.md: 3,
+                    }, context),
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 4 / 3,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return Card(
+                        color: Colors.white,
+                        child: InkWell(
+                          onTap: () async {
+                            var url = posts[index].url;
+                            await launchUrl(
+                              Uri.parse(url),
+                              mode: LaunchMode.externalApplication,
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              AspectRatio(
+                                aspectRatio: 16 / 9,
+                                child: Image.network(
+                                  "https://i.ytimg.com/vi/${posts[index].id}/maxresdefault.jpg",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: Text(posts[index].title),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    childCount: posts.length,
+                  ),
+                ),
+              ),
+      ],
     );
   }
 }
