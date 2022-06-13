@@ -11,7 +11,7 @@
 
 (def ^:private sizes [{:name "iphone-6_5" :resolution "1242x2688" :width 414 :height 896 :deviceScaleFactor 3}
                       {:name "iphone-5_5" :resolution "1242x2208" :width 414 :height 736 :deviceScaleFactor 3}
-                      {:name "ipadpro3-12_9" :resolution "2048x2732" :width 682 :height 910 :deviceScaleFactor 3}])
+                      {:name "ipadpro3-12_9" :resolution "2048x2732" :width 1024 :height 1366 :deviceScaleFactor 2}])
 
 (def counter 0)
 
