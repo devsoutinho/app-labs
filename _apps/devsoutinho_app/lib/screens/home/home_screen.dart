@@ -86,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: posts.isEmpty ? const NeverScrollableScrollPhysics() : null,
         slivers: <Widget>[
           SliverAppBar(
             flexibleSpace: FlexibleSpaceBar(
@@ -97,59 +98,69 @@ class _HomeScreenState extends State<HomeScreen> {
             centerTitle: true,
             expandedHeight: 400,
           ),
-          SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: valueForBreakpoint({
-                Breakpoints.xs: 16,
-                Breakpoints.lg: 100,
-              }, context),
-              vertical: 16,
-            ),
-            sliver: SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: valueForBreakpoint({
-                  Breakpoints.xs: 1,
-                  Breakpoints.md: 3,
-                }, context),
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 4 / 3,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return Card(
-                    color: Colors.white,
-                    child: InkWell(
-                      onTap: () async {
-                        var url = posts[index].url;
-                        await launchUrl(
-                          Uri.parse(url),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: Image.network(
-                              "https://i.ytimg.com/vi/${posts[index].id}/maxresdefault.jpg",
-                              fit: BoxFit.cover,
+          posts.isEmpty
+              ? const SliverFillRemaining(
+                  child: Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                )
+              : SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: valueForBreakpoint({
+                      Breakpoints.xs: 16,
+                      Breakpoints.lg: 100,
+                    }, context),
+                    vertical: 16,
+                  ),
+                  sliver: SliverGrid(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: valueForBreakpoint({
+                        Breakpoints.xs: 1,
+                        Breakpoints.md: 3,
+                      }, context),
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: 4 / 3,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return Card(
+                          color: Colors.white,
+                          child: InkWell(
+                            onTap: () async {
+                              var url = posts[index].url;
+                              await launchUrl(
+                                Uri.parse(url),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: Image.network(
+                                    "https://i.ytimg.com/vi/${posts[index].id}/maxresdefault.jpg",
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(16),
+                                  alignment: Alignment.center,
+                                  child: Text(posts[index].title),
+                                ),
+                              ],
                             ),
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(16),
-                            alignment: Alignment.center,
-                            child: Text(posts[index].title),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
+                      childCount: posts.length,
                     ),
-                  );
-                },
-                childCount: posts.length,
-              ),
-            ),
-          ),
+                  ),
+                ),
         ],
       ),
     );
