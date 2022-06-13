@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     router.addRoutes(routes);
 
     return MaterialApp(
-      title: 'DevSoutinho',
+      title: 'DevSoutinho Labs',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
