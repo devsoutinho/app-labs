@@ -1,3 +1,6 @@
+import 'package:box_widget/components/box/utils/get_active_breakpoint.dart';
+import 'package:flutter/material.dart';
+
 enum Breakpoints {
   xs,
   sm,
@@ -69,4 +72,10 @@ dynamic resolveValueForBreakpoint(
       return value[breakpoint];
     }
   }
+}
+
+ValueType valueForBreakpoint<ValueType>(
+    Map<Breakpoints, ValueType> value, BuildContext context) {
+  var activeBreakpoint = getActiveBreakpoint(context);
+  return resolveValueForBreakpoint(value, activeBreakpoint);
 }
