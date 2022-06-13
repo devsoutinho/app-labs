@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:devsoutinho_ui/devsoutinho_ui.dart';
+import 'package:web_navigation/core/use_router.dart';
 
 class Post {
   final String id;
@@ -93,11 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var _widgetOptions = <Widget>[
       HomeBody(posts: posts, widget: widget),
-      const Center(
-        child: Text(
-          'Settings and my apps',
-        ),
-      ),
+      SettingsBody(),
     ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
@@ -120,6 +117,42 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+class SettingsBody extends StatelessWidget {
+  final List<String> _names = [
+    'Magic Counter',
+  ];
+
+  SettingsBody({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var router = UseRouter(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 50,
+      ),
+      child: ListView.builder(
+        itemBuilder: (_, i) {
+          String name = _names[i];
+          return ListTile(
+            onTap: () async {
+              router.push('/apps/magic_counter/');
+            },
+            leading: CircleAvatar(
+              child: Text(name[0]),
+            ),
+            title: Text(name),
+          );
+        },
+        itemCount: _names.length,
+      ),
+    );
+  }
+}
+
 class HomeBody extends StatelessWidget {
   const HomeBody({
     Key? key,
@@ -136,6 +169,7 @@ class HomeBody extends StatelessWidget {
       physics: posts.isEmpty ? const NeverScrollableScrollPhysics() : null,
       slivers: <Widget>[
         SliverAppBar(
+          automaticallyImplyLeading: false,
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,
             title: Text(widget.title),
