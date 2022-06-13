@@ -11,6 +11,7 @@
       "dev:linux": "flutter run -d linux",
       "dev:web": "flutter run -d chrome --web-renderer html",
       "dev:web:canvas": "flutter run -d chrome --web-renderer canvaskit",
+      "build:ios": "flutter build ios",
       "build:mac": "flutter build macos",
       "build:win": "flutter build windows",
       "build:linux": "flutter build linux",

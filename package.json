@@ -19,6 +19,7 @@
       "dev:linux": "yarn devsoutinho_app dev:linux",
       "build:web": "yarn devsoutinho_app build:web",
       "build:web:dev": "yarn devsoutinho_app build:web:dev",
+      "build:ios": "yarn devsoutinho_app build:ios",
       "deploy:web": "yarn devsoutinho_app deploy:web",
       "test:unit": "yarn devsoutinho_app test:unit",
       "deploy:web:preview": "yarn devsoutinho_app deploy:web:preview",
