@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: "Configurações",
+            label: "Opções",
           ),
         ],
       ),
@@ -142,9 +142,15 @@ class SettingsBody extends StatelessWidget {
               router.push('/apps/magic_counter/');
             },
             leading: CircleAvatar(
-              child: Text(name[0]),
+              child: Text(
+                name[0],
+                styleSheet: TextStyleSheet(selectable: false),
+              ),
             ),
-            title: Text(name),
+            title: Text(
+              name,
+              styleSheet: TextStyleSheet(selectable: false),
+            ),
           );
         },
         itemCount: _names.length,
